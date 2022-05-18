@@ -1,5 +1,6 @@
 const db = require('../models/');
 const Auctions = db.Auctions;
+const AuctionConfigs = db.AuctionConfigs;
 const Products = db.Products;
 const Users = db.Users;
 
@@ -8,11 +9,19 @@ const getAll = async (req, res) => {
         return await Auctions.findAll({
             attributes: ['name'],
             include: [
-                // {model: Products},
+                {
+                    model: Products,
+                    attributes: ['name']
+                },
                 {
                     model: Users, 
                     as: 'Auctioneer',
                     attributes: ['id', 'firstName', 'lastName']
+                },
+                {
+                    model: AuctionConfigs,
+                    attributes: ['name'],
+                    as: 'Status'
                 }
             ]
         })

@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      AuctionConfigs.belongsTo(models.Auctions)
+      AuctionConfigs.hasOne(models.Auctions, {
+        foreignKey: 'status'
+      })
     }
   }
   AuctionConfigs.init({

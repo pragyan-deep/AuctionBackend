@@ -8,10 +8,25 @@ const getAll = async (req, res) => {
     try{
         // return await Products.findAll()
         return await Products.findAll({
+            attributes: ['name'],
             include: [
-                {model: Auctions},
-                {model: ProductConfigs},
-                {model: Users, as: 'Buyer'}
+                {
+                    model: Auctions,
+                    attributes: ['name'],
+                },
+                {
+                    model: ProductConfigs,
+                    as: 'Status'
+                },
+                {
+                    model: ProductConfigs,
+                    as: 'Type'
+                },
+                {
+                    model: Users,
+                    attributes: ['firstName', 'lastName'],
+                    as: 'Buyer'
+                }
             ]
         })
     }catch(e){

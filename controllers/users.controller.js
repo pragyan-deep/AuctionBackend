@@ -9,11 +9,21 @@ const getAll = async (req, res) => {
         return await Users.findAll({
             attributes: ['firstName'],
             include: [
-                // {model: UserConfigs},
-                // {model: Products}
+                {
+                    model: Products,
+                    attributes: ['name'],
+                },
                 {
                     model: Auctions,
                     attributes: ['name'],
+                },
+                {
+                    model: UserConfigs,
+                    as: 'Status'
+                },
+                {
+                    model: UserConfigs,
+                    as: 'Type'
                 }
             ]
         })
