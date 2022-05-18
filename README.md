@@ -1,9 +1,6 @@
 # AuctionBackend
 NodeJS Backend
 
-# web-api
-nodejs backend API 
-
 ## Install packages
 "npm install"
 
